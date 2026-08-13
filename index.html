@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vokabel-Held 🚀</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#7c5cff">
+<link rel="icon" href="icons/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Vokabel-Held">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand" data-nav="home">
+    <span class="brand-emoji">🦊</span>
+    <span class="brand-name">Vokabel-Held</span>
+  </div>
+  <nav class="topnav hidden" id="topnav">
+    <button data-nav="home" class="nav-btn active">🏠 Start</button>
+    <button data-nav="learn" class="nav-btn">🎯 Lernen</button>
+    <button data-nav="manage" class="nav-btn">📚 Vokabeln</button>
+    <button data-nav="grammar" class="nav-btn">📖 Grammatik</button>
+    <button data-nav="stats" class="nav-btn">🏆 Fortschritt</button>
+    <button data-nav="snake" class="nav-btn hidden" id="nav-snake-btn">🐍 Snake</button>
+  </nav>
+  <div class="header-stats hidden" id="header-stats">
+    <button class="pill pill-player" id="pill-player">👤 ...</button>
+    <span class="pill" id="pill-points">⭐ 0</span>
+    <span class="pill" id="pill-streak">🔥 0</span>
+  </div>
+</header>
+
+<main id="app">
+
+  <!-- PLAYER SELECT -->
+  <section id="view-players" class="view">
+    <div class="hero">
+      <h1>Wer lernt gerade? 🙋</h1>
+      <p class="hero-sub">Wähle deinen Namen aus.</p>
+    </div>
+    <div class="lang-cards" id="player-cards"></div>
+  </section>
+
+  <!-- HOME -->
+  <section id="view-home" class="view hidden">
+    <div class="hero">
+      <h1>Hallo! Bereit zu lernen? 💪</h1>
+      <p class="hero-sub">Wähle eine Sprache und starte direkt los.</p>
+    </div>
+
+    <div class="due-banner" id="due-banner"></div>
+
+    <div class="snake-unlock-banner hidden" id="snake-unlock-banner">
+      🐍 Du hast 1000 Punkte erreicht! Spiel dir eine Runde Snake als Belohnung.
+      <button class="btn btn-primary btn-small" data-nav="snake">Jetzt spielen</button>
+    </div>
+
+    <div class="lang-cards">
+      <div class="lang-col">
+        <div class="lang-card lang-en">
+          <div class="lang-flag flag-en">EN</div>
+          <h2>Englisch</h2>
+          <p id="home-en-count">0 Vokabeln</p>
+          <button class="btn btn-primary" data-start-lang="en">Los geht's</button>
+        </div>
+        <div class="lang-card lang-card-grammar">
+          <div class="lang-flag flag-grammar">📖</div>
+          <h2>Grammatik</h2>
+          <p>Simple Past, be, Present Perfect ...</p>
+          <button class="btn btn-primary" data-nav="grammar">Üben</button>
+        </div>
+      </div>
+      <div class="lang-col">
+        <div class="lang-card lang-es">
+          <div class="lang-flag flag-es">ES</div>
+          <h2>Spanisch</h2>
+          <p id="home-es-count">0 Vokabeln</p>
+          <button class="btn btn-primary" data-start-lang="es">Los geht's</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="quick-links">
+      <button class="btn btn-ghost" data-nav="manage">➕ Neue Vokabeln hinzufügen</button>
+      <button class="btn btn-ghost" data-nav="stats">📈 Meinen Fortschritt ansehen</button>
+    </div>
+  </section>
+
+  <!-- LEARN: mode picker -->
+  <section id="view-learn" class="view hidden">
+    <h1 id="learn-title">Wie möchtest du üben?</h1>
+
+    <div class="lang-toggle">
+      <button class="toggle-btn" data-set-lang="en"><span class="mini-flag flag-en">EN</span> Englisch</button>
+      <button class="toggle-btn" data-set-lang="es"><span class="mini-flag flag-es">ES</span> Spanisch</button>
+    </div>
+
+    <div class="lang-toggle" id="learn-unit-toggle">
+      <button class="toggle-btn" data-set-unit="all">Alle Units</button>
+      <button class="toggle-btn" data-set-unit="1">Unit 1</button>
+      <button class="toggle-btn" data-set-unit="2">Unit 2</button>
+      <button class="toggle-btn" data-set-unit="3">Unit 3</button>
+      <button class="toggle-btn" data-set-unit="4">Unit 4</button>
+      <button class="toggle-btn" data-set-unit="5">Unit 5</button>
+      <button class="toggle-btn" data-set-unit="6">Unit 6</button>
+    </div>
+
+    <div class="mode-grid">
+      <button class="mode-card" data-mode="flash">
+        <span class="mode-emoji">🃏</span>
+        <span class="mode-title">Karteikarten</span>
+        <span class="mode-desc">Karte umdrehen &amp; selbst bewerten</span>
+      </button>
+      <button class="mode-card" data-mode="mc">
+        <span class="mode-emoji">✅</span>
+        <span class="mode-title">Multiple Choice</span>
+        <span class="mode-desc">Richtige Antwort auswählen</span>
+      </button>
+      <button class="mode-card" data-mode="type">
+        <span class="mode-emoji">⌨️</span>
+        <span class="mode-title">Wort tippen</span>
+        <span class="mode-desc">Übersetzung selbst schreiben</span>
+      </button>
+      <button class="mode-card" data-mode="memory">
+        <span class="mode-emoji">🧠</span>
+        <span class="mode-title">Memory</span>
+        <span class="mode-desc">Passende Paare finden</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- GRAMMAR: topic picker -->
+  <section id="view-grammar" class="view hidden">
+    <h1>Grammatik</h1>
+    <p class="hero-sub">Wähle ein Thema zum Üben.</p>
+    <div class="lang-toggle" id="grammar-unit-toggle">
+      <button class="toggle-btn" data-set-unit="all">Alle Units</button>
+      <button class="toggle-btn" data-set-unit="1">Unit 1</button>
+      <button class="toggle-btn" data-set-unit="2">Unit 2</button>
+      <button class="toggle-btn" data-set-unit="3">Unit 3</button>
+      <button class="toggle-btn" data-set-unit="4">Unit 4</button>
+      <button class="toggle-btn" data-set-unit="5">Unit 5</button>
+      <button class="toggle-btn" data-set-unit="6">Unit 6</button>
+    </div>
+    <div class="lang-cards grammar-topic-cards" id="grammar-topic-cards"></div>
+  </section>
+
+  <!-- GRAMMAR: mode picker -->
+  <section id="view-grammar-modes" class="view hidden">
+    <button class="btn btn-ghost btn-small" data-nav="grammar">← Themen</button>
+    <h1 id="grammar-modes-title">Thema</h1>
+    <p class="hero-sub" id="grammar-modes-subtitle"></p>
+
+    <div class="mode-grid mode-grid-3">
+      <button class="mode-card" data-grammar-mode="fill">
+        <span class="mode-emoji">✏️</span>
+        <span class="mode-title">Lückentext</span>
+        <span class="mode-desc">Lücke ausfüllen</span>
+      </button>
+      <button class="mode-card" data-grammar-mode="mc">
+        <span class="mode-emoji">✅</span>
+        <span class="mode-title">Multiple Choice</span>
+        <span class="mode-desc">Richtige Lösung auswählen</span>
+      </button>
+      <button class="mode-card" data-grammar-mode="order">
+        <span class="mode-emoji">🔀</span>
+        <span class="mode-title">Reihenfolge</span>
+        <span class="mode-desc">Richtig anordnen</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- SESSION: active exercise -->
+  <section id="view-session" class="view hidden">
+    <div class="session-header">
+      <button class="btn btn-ghost btn-small" id="session-quit">← Abbrechen</button>
+      <div class="session-progress-wrap">
+        <div class="session-progress-bar"><div class="session-progress-fill" id="session-progress-fill"></div></div>
+        <span id="session-progress-text">0 / 0</span>
+      </div>
+      <span class="pill" id="session-score">⭐ 0</span>
+    </div>
+    <div id="session-body" class="session-body"></div>
+  </section>
+
+  <!-- RESULT -->
+  <section id="view-result" class="view hidden">
+    <div class="result-card">
+      <div class="result-emoji" id="result-emoji">🎉</div>
+      <h1 id="result-title">Super gemacht!</h1>
+      <p id="result-sub"></p>
+      <div class="result-stats">
+        <div class="result-stat"><span class="rs-num" id="result-correct">0</span><span class="rs-label">Richtig</span></div>
+        <div class="result-stat"><span class="rs-num" id="result-wrong">0</span><span class="rs-label">Falsch</span></div>
+        <div class="result-stat"><span class="rs-num" id="result-xp">0</span><span class="rs-label">Punkte</span></div>
+      </div>
+      <div class="result-actions">
+        <button class="btn btn-primary" id="result-again">Nochmal üben</button>
+        <button class="btn btn-ghost" data-nav="home">Zur Startseite</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANAGE -->
+  <section id="view-manage" class="view hidden">
+    <h1>Vokabeln verwalten</h1>
+
+    <div class="manage-toolbar">
+      <div class="lang-toggle" id="manage-lang-toggle">
+        <button class="toggle-btn" data-manage-lang="en"><span class="mini-flag flag-en">EN</span> Englisch</button>
+        <button class="toggle-btn" data-manage-lang="es"><span class="mini-flag flag-es">ES</span> Spanisch</button>
+      </div>
+      <input type="search" id="manage-search" placeholder="Suchen...">
+    </div>
+
+    <form id="add-form" class="add-form">
+      <input type="text" id="add-de" placeholder="Deutsches Wort" required>
+      <input type="text" id="add-target" placeholder="Übersetzung" required>
+      <input type="text" id="add-category" placeholder="Kategorie (optional)">
+      <button type="submit" class="btn btn-primary">➕ Hinzufügen</button>
+    </form>
+
+    <details class="bulk-import">
+      <summary>📋 Mehrere Vokabeln auf einmal einfügen</summary>
+      <p class="bulk-hint">Ein Wortpaar pro Zeile, getrennt durch <code>=</code>. Beispiel:<br>
+        <code>Hund = dog</code><br><code>Katze = cat</code></p>
+      <textarea id="bulk-text" rows="6" placeholder="Hund = dog&#10;Katze = cat"></textarea>
+      <button type="button" id="bulk-add-btn" class="btn btn-secondary">Alle hinzufügen</button>
+    </details>
+
+    <table class="vocab-table">
+      <thead>
+        <tr><th>Deutsch</th><th>Übersetzung</th><th>Kategorie</th><th>Box</th><th></th></tr>
+      </thead>
+      <tbody id="vocab-tbody"></tbody>
+    </table>
+    <p id="vocab-empty" class="empty-hint hidden">Noch keine Vokabeln. Füge oben welche hinzu! ✏️</p>
+  </section>
+
+  <!-- STATS -->
+  <section id="view-stats" class="view hidden">
+    <h1>Dein Fortschritt</h1>
+    <div class="stats-grid">
+      <div class="stat-card"><span class="stat-num" id="stat-points">0</span><span class="stat-label">⭐ Punkte gesamt</span></div>
+      <div class="stat-card"><span class="stat-num" id="stat-streak">0</span><span class="stat-label">🔥 Tage-Serie</span></div>
+      <div class="stat-card"><span class="stat-num" id="stat-level">1</span><span class="stat-label">🏅 Level</span></div>
+      <div class="stat-card"><span class="stat-num" id="stat-mastered">0</span><span class="stat-label">🌟 Gemeisterte Wörter</span></div>
+    </div>
+
+    <div class="lang-progress">
+      <div class="lang-progress-row">
+        <span class="lang-progress-label"><span class="mini-flag flag-en">EN</span> Englisch</span>
+        <div class="lang-progress-bar"><div class="lang-progress-fill" id="progress-en"></div></div>
+        <span id="progress-en-text">0%</span>
+      </div>
+      <div class="lang-progress-row">
+        <span class="lang-progress-label"><span class="mini-flag flag-es">ES</span> Spanisch</span>
+        <div class="lang-progress-bar"><div class="lang-progress-fill" id="progress-es"></div></div>
+        <span id="progress-es-text">0%</span>
+      </div>
+    </div>
+
+    <div class="badges" id="badges"></div>
+  </section>
+
+  <!-- SNAKE (Belohnung ab 1000 Punkten) -->
+  <section id="view-snake" class="view hidden">
+    <div class="snake-wrap">
+      <div class="snake-header">
+        <button class="btn btn-ghost btn-small" data-nav="home">← Zurück</button>
+        <span class="pill" id="snake-score">🍎 0</span>
+        <span class="pill" id="snake-highscore">🏆 0</span>
+      </div>
+
+      <div class="snake-canvas-wrap">
+        <canvas id="snake-canvas" width="480" height="480"></canvas>
+        <div class="snake-overlay" id="snake-overlay">
+          <div class="snake-overlay-card">
+            <h2 id="snake-overlay-title">🐍 Bereit?</h2>
+            <p id="snake-overlay-text">Sammle Äpfel, weiche Wänden und deinem eigenen Schwanz aus! Eine Runde, dann ist Schluss.</p>
+            <button class="btn btn-primary" id="snake-start-btn">Los geht's!</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="snake-controls">
+        <button class="snake-btn snake-btn-up" id="snake-up">⬆️</button>
+        <button class="snake-btn snake-btn-left" id="snake-left">⬅️</button>
+        <button class="snake-btn snake-btn-down" id="snake-down">⬇️</button>
+        <button class="snake-btn snake-btn-right" id="snake-right">➡️</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
