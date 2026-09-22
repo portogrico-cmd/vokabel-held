@@ -754,7 +754,7 @@ const MIGRATION_UNIT6_WORDS = [
   { de: "vertrauen", target: "to trust", category: "Unit 6: Film" },
 ];
 
-function applyMigration(id, entries, unit) {
+function applyMigration(id, entries, unit, grade) {
   DATA.appliedMigrations = DATA.appliedMigrations || [];
   if (DATA.appliedMigrations.includes(id)) return;
   entries.forEach(w => {
@@ -765,6 +765,7 @@ function applyMigration(id, entries, unit) {
     if (!exists) {
       const word = makeWord("en", w.de, w.target, w.category);
       word.unit = unit || null;
+      word.grade = grade || "6";
       DATA.words.push(word);
     }
   });
@@ -805,6 +806,7 @@ function makeWord(language, de, target, category) {
     id: "w_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
     language, de, target, category: category || "",
     unit: null,
+    grade: currentGrade || "6",
     box: 1,
     nextReview: todayStr(),
     correct: 0,
@@ -833,7 +835,7 @@ function wordsForLang(lang) {
 }
 
 function wordsForLangUnit(lang, unit) {
-  const pool = wordsForLang(lang);
+  const pool = wordsForLang(lang).filter(w => (w.grade || "6") === currentGrade);
   return (!unit || unit === "all") ? pool : pool.filter(w => w.unit === unit);
 }
 
@@ -968,6 +970,7 @@ document.querySelectorAll("[data-start-lang]").forEach(btn => {
 
 let currentLang = "en";
 let currentUnit = "all"; // "all" | "1" | "2" — gilt für Vokabeln (nur Englisch) und Grammatik
+let currentGrade = "6"; // Überordner über den Units, z.B. "6" für 6. Klasse
 
 function renderLearn() {
   document.querySelectorAll("[data-set-lang]").forEach(b => {
@@ -975,15 +978,33 @@ function renderLearn() {
   });
   const langName = currentLang === "en" ? "Englisch" : "Spanisch";
   document.getElementById("learn-title").textContent = `${langName} — wie möchtest du üben?`;
+  document.querySelectorAll("[data-set-grade]").forEach(b => {
+    b.classList.toggle("active", b.dataset.setGrade === currentGrade);
+  });
   document.querySelectorAll("[data-set-unit]").forEach(b => {
     b.classList.toggle("active", b.dataset.setUnit === currentUnit);
   });
   // Units gibt es aktuell nur für Englisch, bei Spanisch macht die Auswahl keinen Sinn.
   document.getElementById("learn-unit-toggle").classList.toggle("hidden", currentLang !== "en");
+  document.getElementById("learn-grade-toggle").classList.toggle("hidden", currentLang !== "en");
 }
 
 document.querySelectorAll("[data-set-lang]").forEach(b => {
   b.addEventListener("click", () => { currentLang = b.dataset.setLang; renderLearn(); });
+});
+
+document.querySelectorAll("[data-set-grade]").forEach(b => {
+  b.addEventListener("click", () => {
+    currentGrade = b.dataset.setGrade;
+    currentUnit = "all";
+    document.querySelectorAll("[data-set-grade]").forEach(x => {
+      x.classList.toggle("active", x.dataset.setGrade === currentGrade);
+    });
+    document.querySelectorAll("[data-set-unit]").forEach(x => {
+      x.classList.toggle("active", x.dataset.setUnit === currentUnit);
+    });
+    if (!document.getElementById("view-grammar").classList.contains("hidden")) renderGrammarTopics();
+  });
 });
 
 document.querySelectorAll("[data-set-unit]").forEach(b => {
@@ -1461,24 +1482,24 @@ function applyGrammarMigration(id, verbs) {
 // ---------------- Grammatik: Themen & Satzübungen ----------------
 
 const GRAMMAR_TOPICS = [
-  { id: "irregular", emoji: "🔤", title: "Unregelmäßige Verben", subtitle: "S. 204: Infinitiv, Simple Past, Partizip", unit: "all" },
-  { id: "g1", emoji: "⏳", title: "G1: Simple Past", subtitle: "Die einfache Vergangenheit", unit: "1" },
-  { id: "g2", emoji: "🔵", title: "G2: Verb be", subtitle: "am/is/are und was/were", unit: "1" },
-  { id: "g3", emoji: "✅", title: "G3: Present Perfect", subtitle: "Aussagen & Verneinung", unit: "1" },
-  { id: "g4", emoji: "❓", title: "G4: Present Perfect", subtitle: "Fragen & Kurzantworten", unit: "1" },
-  { id: "g5", emoji: "🔢", title: "G5: much, many, a lot of", subtitle: "Mengenangaben", unit: "2" },
-  { id: "g6", emoji: "🔍", title: "G6: some & any", subtitle: "Indefinitpronomen", unit: "2" },
-  { id: "g7", emoji: "🔮", title: "G7: going to-future", subtitle: "Aussagen & Verneinung", unit: "3" },
-  { id: "g8", emoji: "🧳", title: "G8: going to-future", subtitle: "Fragen & Kurzantworten", unit: "3" },
-  { id: "g9", emoji: "📏", title: "G9: Vergleiche mit -er/more", subtitle: "1. Steigerung", unit: "3" },
-  { id: "g10", emoji: "🏆", title: "G10: Steigerung mit -est/most", subtitle: "2. Steigerung", unit: "3" },
-  { id: "g11", emoji: "👀", title: "G11: Present Progressive", subtitle: "Wiederholung (Revision)", unit: "4" },
-  { id: "g12", emoji: "🏋️", title: "G12: Past Progressive", subtitle: "Die Verlaufsform der Vergangenheit", unit: "4" },
-  { id: "g13", emoji: "⏱️", title: "G13: Simple Past & Past Progressive", subtitle: "Gegenüberstellung", unit: "4" },
-  { id: "g14", emoji: "🔁", title: "G14: Simple Present & Present Progressive", subtitle: "Wiederholung", unit: "4" },
-  { id: "g15", emoji: "🔮", title: "G15: will-future", subtitle: "Die Zukunft mit will", unit: "5" },
-  { id: "g16", emoji: "🤝", title: "G16: Possessivpronomen", subtitle: "mine, yours, his, hers ...", unit: "5" },
-  { id: "g17", emoji: "❓", title: "G17: Satzstellung in Fragen", subtitle: "Wiederholung (Revision)", unit: "6" },
+  { id: "irregular", emoji: "🔤", title: "Unregelmäßige Verben", subtitle: "S. 204: Infinitiv, Simple Past, Partizip", unit: "all", grade: "6" },
+  { id: "g1", emoji: "⏳", title: "G1: Simple Past", subtitle: "Die einfache Vergangenheit", unit: "1", grade: "6" },
+  { id: "g2", emoji: "🔵", title: "G2: Verb be", subtitle: "am/is/are und was/were", unit: "1", grade: "6" },
+  { id: "g3", emoji: "✅", title: "G3: Present Perfect", subtitle: "Aussagen & Verneinung", unit: "1", grade: "6" },
+  { id: "g4", emoji: "❓", title: "G4: Present Perfect", subtitle: "Fragen & Kurzantworten", unit: "1", grade: "6" },
+  { id: "g5", emoji: "🔢", title: "G5: much, many, a lot of", subtitle: "Mengenangaben", unit: "2", grade: "6" },
+  { id: "g6", emoji: "🔍", title: "G6: some & any", subtitle: "Indefinitpronomen", unit: "2", grade: "6" },
+  { id: "g7", emoji: "🔮", title: "G7: going to-future", subtitle: "Aussagen & Verneinung", unit: "3", grade: "6" },
+  { id: "g8", emoji: "🧳", title: "G8: going to-future", subtitle: "Fragen & Kurzantworten", unit: "3", grade: "6" },
+  { id: "g9", emoji: "📏", title: "G9: Vergleiche mit -er/more", subtitle: "1. Steigerung", unit: "3", grade: "6" },
+  { id: "g10", emoji: "🏆", title: "G10: Steigerung mit -est/most", subtitle: "2. Steigerung", unit: "3", grade: "6" },
+  { id: "g11", emoji: "👀", title: "G11: Present Progressive", subtitle: "Wiederholung (Revision)", unit: "4", grade: "6" },
+  { id: "g12", emoji: "🏋️", title: "G12: Past Progressive", subtitle: "Die Verlaufsform der Vergangenheit", unit: "4", grade: "6" },
+  { id: "g13", emoji: "⏱️", title: "G13: Simple Past & Past Progressive", subtitle: "Gegenüberstellung", unit: "4", grade: "6" },
+  { id: "g14", emoji: "🔁", title: "G14: Simple Present & Present Progressive", subtitle: "Wiederholung", unit: "4", grade: "6" },
+  { id: "g15", emoji: "🔮", title: "G15: will-future", subtitle: "Die Zukunft mit will", unit: "5", grade: "6" },
+  { id: "g16", emoji: "🤝", title: "G16: Possessivpronomen", subtitle: "mine, yours, his, hers ...", unit: "5", grade: "6" },
+  { id: "g17", emoji: "❓", title: "G17: Satzstellung in Fragen", subtitle: "Wiederholung (Revision)", unit: "6", grade: "6" },
 ];
 
 let currentGrammarTopic = "irregular";
@@ -1641,6 +1662,9 @@ const GRAMMAR_SENTENCES = [
 ];
 
 function renderGrammarTopics() {
+  document.querySelectorAll("[data-set-grade]").forEach(b => {
+    b.classList.toggle("active", b.dataset.setGrade === currentGrade);
+  });
   document.querySelectorAll("[data-set-unit]").forEach(b => {
     b.classList.toggle("active", b.dataset.setUnit === currentUnit);
   });
@@ -1648,7 +1672,9 @@ function renderGrammarTopics() {
   const wrap = document.getElementById("grammar-topic-cards");
   wrap.innerHTML = "";
 
-  const visible = GRAMMAR_TOPICS.filter(t => t.unit === "all" || currentUnit === "all" || t.unit === currentUnit);
+  const visible = GRAMMAR_TOPICS
+    .filter(t => (t.grade || "6") === currentGrade)
+    .filter(t => t.unit === "all" || currentUnit === "all" || t.unit === currentUnit);
   if (visible.length === 0) {
     wrap.innerHTML = `<p class="empty-hint">Für diese Unit gibt es noch keine Grammatikthemen.</p>`;
     return;

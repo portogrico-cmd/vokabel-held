@@ -152,6 +152,14 @@ p { color: var(--text-light); }
 }
 .toggle-btn.active { border-color: var(--purple); background: var(--purple); color: white; }
 
+.toggle-grade { margin-bottom: 0.6rem; }
+.toggle-btn-grade {
+  font-size: 1.05rem; padding: 0.7rem 1.4rem;
+  border-radius: 14px; border-width: 2px;
+  background: linear-gradient(135deg, #f5f3ff, #eef8ff);
+}
+.toggle-btn-grade.active { background: linear-gradient(135deg, var(--purple), var(--pink)); border-color: transparent; }
+
 .mode-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
 .mode-grid-3 { grid-template-columns: repeat(3, 1fr); }
 .mode-card {
