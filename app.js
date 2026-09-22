@@ -754,6 +754,37 @@ const MIGRATION_UNIT6_WORDS = [
   { de: "vertrauen", target: "to trust", category: "Unit 6: Film" },
 ];
 
+// ---------------- Migrations (Red Line 3, 7. Klasse) ----------------
+
+// 7. Klasse, Unit 1 "A long time ago ...", S. 10-11.
+const MIGRATION_GRADE7_UNIT1_WORDS = [
+  { de: "Kreis; Ring", target: "circle", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Römer; Römerin; römisch", target: "Roman", category: "7. Klasse – Unit 1: Intro" },
+  { de: "schützen", target: "to protect", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Reich; Kaiserreich", target: "empire", category: "7. Klasse – Unit 1: Intro" },
+  { de: "dauern", target: "to take", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Wikinger; Wikingerin; Wikinger-", target: "Viking", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Zeitalter", target: "age", category: "7. Klasse – Unit 1: Intro" },
+  { de: "am Ende; zum Schluss", target: "at the end", category: "7. Klasse – Unit 1: Intro" },
+  { de: "nördlich", target: "northern", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Dänemark", target: "Denmark", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Norwegen", target: "Norway", category: "7. Klasse – Unit 1: Intro" },
+  { de: "angreifen", target: "to attack", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Normanne; Normannin; normannisch", target: "Norman", category: "7. Klasse – Unit 1: Intro" },
+  { de: "gründen", target: "to found, founded, founded", category: "7. Klasse – Unit 1: Intro" },
+  { de: "stark; mächtig; bedeutend; beeindruckend", target: "powerful", category: "7. Klasse – Unit 1: Intro" },
+  { de: "industrielle Revolution", target: "Industrial Revolution", category: "7. Klasse – Unit 1: Intro" },
+  { de: "erzeugen; herstellen; anbauen", target: "to produce", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Industrie; Branche", target: "industry", category: "7. Klasse – Unit 1: Intro" },
+  { de: "laut", target: "noisy", category: "7. Klasse – Unit 1: Intro" },
+  { de: "dreckig; schmutzig", target: "dirty", category: "7. Klasse – Unit 1: Intro" },
+  { de: "damals; zu der Zeit", target: "at that time", category: "7. Klasse – Unit 1: Intro" },
+  { de: "wiegen", target: "to weigh", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Tonne", target: "tonne", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Grab", target: "grave", category: "7. Klasse – Unit 1: Intro" },
+  { de: "heilig", target: "holy", category: "7. Klasse – Unit 1: Intro" },
+];
+
 function applyMigration(id, entries, unit, grade) {
   DATA.appliedMigrations = DATA.appliedMigrations || [];
   if (DATA.appliedMigrations.includes(id)) return;
@@ -783,6 +814,7 @@ function applyTiagoMigrations() {
   applyMigration("redline2-unit5-p92-107-2026-08", MIGRATION_UNIT5_WORDS, "5");
   applyMigration("redline2-unit5-film-extra-2026-08", MIGRATION_UNIT5_FILM_EXTRA_WORDS, "5");
   applyMigration("redline2-unit6-p112-126-2026-08", MIGRATION_UNIT6_WORDS, "6");
+  applyMigration("redline3-grade7-unit1-p10-11-2026-09", MIGRATION_GRADE7_UNIT1_WORDS, "1", "7");
   applyGrammarMigration("redline2-irregular-verbs-p204-2026-08", BOOK_IRREGULAR_VERBS_P204);
 }
 
@@ -985,8 +1017,10 @@ function renderLearn() {
     b.classList.toggle("active", b.dataset.setUnit === currentUnit);
   });
   // Units gibt es aktuell nur für Englisch, bei Spanisch macht die Auswahl keinen Sinn.
-  document.getElementById("learn-unit-toggle").classList.toggle("hidden", currentLang !== "en");
   document.getElementById("learn-grade-toggle").classList.toggle("hidden", currentLang !== "en");
+  // Jede Klassenstufe hat ihre eigene Unit-Reihe (unterschiedliche Anzahl an Units).
+  document.getElementById("learn-unit-toggle-6").classList.toggle("hidden", currentLang !== "en" || currentGrade !== "6");
+  document.getElementById("learn-unit-toggle-7").classList.toggle("hidden", currentLang !== "en" || currentGrade !== "7");
 }
 
 document.querySelectorAll("[data-set-lang]").forEach(b => {
@@ -1004,6 +1038,7 @@ document.querySelectorAll("[data-set-grade]").forEach(b => {
       x.classList.toggle("active", x.dataset.setUnit === currentUnit);
     });
     if (!document.getElementById("view-grammar").classList.contains("hidden")) renderGrammarTopics();
+    if (!document.getElementById("view-learn").classList.contains("hidden")) renderLearn();
   });
 });
 
@@ -1668,6 +1703,9 @@ function renderGrammarTopics() {
   document.querySelectorAll("[data-set-unit]").forEach(b => {
     b.classList.toggle("active", b.dataset.setUnit === currentUnit);
   });
+  // Jede Klassenstufe hat ihre eigene Unit-Reihe (unterschiedliche Anzahl an Units).
+  document.getElementById("grammar-unit-toggle-6").classList.toggle("hidden", currentGrade !== "6");
+  document.getElementById("grammar-unit-toggle-7").classList.toggle("hidden", currentGrade !== "7");
 
   const wrap = document.getElementById("grammar-topic-cards");
   wrap.innerHTML = "";
