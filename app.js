@@ -1443,8 +1443,18 @@ function renderTyping(body) {
   input.focus();
 
   let answered = false;
+  let awaitingContinue = false;
+
+  function proceed() {
+    session.index++;
+    renderSessionStep();
+  }
+
   function submit() {
-    if (answered) return;
+    if (answered) {
+      if (awaitingContinue) proceed();
+      return;
+    }
     answered = true;
     const isCorrect = acceptableAnswers(word.target).has(normalize(input.value));
     input.classList.add(isCorrect ? "correct" : "wrong");
@@ -1453,12 +1463,14 @@ function renderTyping(body) {
       feedback.textContent = "✅ Richtig!";
       feedback.className = "type-feedback correct";
       reviewCorrect(word); session.correct++; session.xp += 15;
+      setTimeout(proceed, 1300);
     } else {
       feedback.textContent = `❌ Richtig wäre: ${word.target}`;
       feedback.className = "type-feedback wrong";
       reviewWrong(word); session.wrong++; requeueIfWrong(word);
+      awaitingContinue = true;
+      submitBtn.textContent = "Weiter";
     }
-    setTimeout(() => { session.index++; renderSessionStep(); }, 1300);
   }
 
   submitBtn.addEventListener("click", submit);
