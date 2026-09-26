@@ -1,4 +1,4 @@
-const CACHE_NAME = "vokabelheld-v1";
+const CACHE_NAME = "vokabelheld-v2";
 const CORE_ASSETS = [
   "./",
   "./index.html",
@@ -27,21 +27,19 @@ self.addEventListener("activate", (event) => {
   self.clients.claim();
 });
 
-// Cache-first (sofort verfügbar, auch offline), aktualisiert den Cache im Hintergrund.
+// Network-first (holt bei bestehender Verbindung immer die neueste Version),
+// fällt nur ohne Internet auf den letzten Cache-Stand zurück (= Offline-Nutzung).
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   event.respondWith(
-    caches.match(event.request).then((cached) => {
-      const networkFetch = fetch(event.request)
-        .then((response) => {
-          if (response && response.status === 200) {
-            const clone = response.clone();
-            caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
-          }
-          return response;
-        })
-        .catch(() => cached);
-      return cached || networkFetch;
-    })
+    fetch(event.request)
+      .then((response) => {
+        if (response && response.status === 200) {
+          const clone = response.clone();
+          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, clone));
+        }
+        return response;
+      })
+      .catch(() => caches.match(event.request))
   );
 });
