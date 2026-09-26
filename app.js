@@ -785,6 +785,28 @@ const MIGRATION_GRADE7_UNIT1_WORDS = [
   { de: "heilig", target: "holy", category: "7. Klasse – Unit 1: Intro" },
 ];
 
+// 7. Klasse, Unit 1 "A long time ago ...", S. 11-12 (Fortsetzung Intro + Topic 1).
+const MIGRATION_GRADE7_UNIT1_P11_12_WORDS = [
+  { de: "Insel", target: "island", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Werkzeug; Gerät", target: "tool", category: "7. Klasse – Unit 1: Intro" },
+  { de: "bestehen aus; hergestellt sein aus", target: "to be made of", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Metall", target: "metal", category: "7. Klasse – Unit 1: Intro" },
+  { de: "ereignisreich; bewegt; belebt; arbeitsreich", target: "busy", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Kelte; Keltin", target: "Celt", category: "7. Klasse – Unit 1: Intro" },
+  { de: "einmarschieren (in); eindringen (in)", target: "to invade", category: "7. Klasse – Unit 1: Intro" },
+  { de: "offensichtlich", target: "obviously", category: "7. Klasse – Unit 1: Intro" },
+
+  { de: "beginnen; anfangen", target: "to begin", category: "7. Klasse – Unit 1: Topic 1" },
+  { de: "der; dem; den; die; das", target: "who", category: "7. Klasse – Unit 1: Topic 1" },
+  { de: "Eiszeit", target: "ice age", category: "7. Klasse – Unit 1: Topic 1" },
+  { de: "drehen; wenden; werden", target: "to turn", category: "7. Klasse – Unit 1: Topic 1" },
+  { de: "Eis", target: "ice", category: "7. Klasse – Unit 1: Topic 1" },
+  { de: "bis (spätestens)", target: "by", category: "7. Klasse – Unit 1: Topic 1" },
+  { de: "vor Christus", target: "BC", category: "7. Klasse – Unit 1: Topic 1" },
+  { de: "schmelzen", target: "to melt", category: "7. Klasse – Unit 1: Topic 1" },
+  { de: "verschwinden", target: "to disappear", category: "7. Klasse – Unit 1: Topic 1" },
+];
+
 function applyMigration(id, entries, unit, grade) {
   DATA.appliedMigrations = DATA.appliedMigrations || [];
   if (DATA.appliedMigrations.includes(id)) return;
@@ -815,6 +837,7 @@ function applyTiagoMigrations() {
   applyMigration("redline2-unit5-film-extra-2026-08", MIGRATION_UNIT5_FILM_EXTRA_WORDS, "5");
   applyMigration("redline2-unit6-p112-126-2026-08", MIGRATION_UNIT6_WORDS, "6");
   applyMigration("redline3-grade7-unit1-p10-11-2026-09", MIGRATION_GRADE7_UNIT1_WORDS, "1", "7");
+  applyMigration("redline3-grade7-unit1-p11-12-2026-09", MIGRATION_GRADE7_UNIT1_P11_12_WORDS, "1", "7");
   applyGrammarMigration("redline2-irregular-verbs-p204-2026-08", BOOK_IRREGULAR_VERBS_P204);
 }
 
@@ -833,12 +856,12 @@ function ensureWordUnits() {
   if (changed) persist();
 }
 
-function makeWord(language, de, target, category) {
+function makeWord(language, de, target, category, grade) {
   return {
     id: "w_" + Date.now().toString(36) + Math.random().toString(36).slice(2, 8),
     language, de, target, category: category || "",
     unit: null,
-    grade: currentGrade || "6",
+    grade: grade || "6",
     box: 1,
     nextReview: todayStr(),
     correct: 0,
@@ -2170,7 +2193,7 @@ document.getElementById("add-form").addEventListener("submit", e => {
   const target = document.getElementById("add-target").value.trim();
   const category = document.getElementById("add-category").value.trim();
   if (!de || !target) return;
-  DATA.words.push(makeWord(manageLang, de, target, category));
+  DATA.words.push(makeWord(manageLang, de, target, category, currentGrade));
   persist();
   e.target.reset();
   document.getElementById("add-de").focus();
@@ -2187,7 +2210,7 @@ document.getElementById("bulk-add-btn").addEventListener("click", () => {
     if (parts.length !== 2) return;
     const de = parts[0].trim(), target = parts[1].trim();
     if (!de || !target) return;
-    DATA.words.push(makeWord(manageLang, de, target, ""));
+    DATA.words.push(makeWord(manageLang, de, target, "", currentGrade));
     added++;
   });
   if (added > 0) {
