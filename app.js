@@ -1124,9 +1124,45 @@ function updateSessionHeader() {
   document.getElementById("session-score").textContent = "⭐ " + session.xp;
 }
 
+const VOCAB_MODE_LABELS = { flash: "Karteikarten", mc: "Multiple Choice", type: "Wort tippen", memory: "Memory" };
+const GRAMMAR_MODE_LABELS = { fill: "Lückentext", mc: "Multiple Choice", order: "Reihenfolge" };
+
+function logActivity() {
+  let label;
+  if (session.kind === "grammar") {
+    const topic = GRAMMAR_TOPICS.find(t => t.id === currentGrammarTopic);
+    const modeLabel = GRAMMAR_MODE_LABELS[session.mode] || session.mode;
+    label = `Grammatik: ${topic ? topic.title : currentGrammarTopic} (${modeLabel})`;
+  } else {
+    const langName = session.lang === "es" ? "Spanisch" : "Englisch";
+    const modeLabel = VOCAB_MODE_LABELS[session.mode] || session.mode;
+    label = `${langName}: ${modeLabel}`;
+  }
+  DATA.activityLog = DATA.activityLog || [];
+  DATA.activityLog.push({ ts: Date.now(), label, correct: session.correct, wrong: session.wrong, xp: session.xp });
+  if (DATA.activityLog.length > 200) DATA.activityLog = DATA.activityLog.slice(-200);
+}
+
+function formatActivityDate(ts) {
+  const d = new Date(ts);
+  const now = new Date();
+  const startOfDay = (date) => new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime();
+  const diffDays = Math.round((startOfDay(now) - startOfDay(d)) / 86400000);
+  const time = d.toLocaleTimeString("de-DE", { hour: "2-digit", minute: "2-digit" });
+  if (diffDays === 0) return `Heute, ${time}`;
+  if (diffDays === 1) return `Gestern, ${time}`;
+  if (diffDays > 1 && diffDays < 7) {
+    const weekday = d.toLocaleDateString("de-DE", { weekday: "short" });
+    return `${weekday}, ${time}`;
+  }
+  const dateStr = d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit" });
+  return `${dateStr}, ${time}`;
+}
+
 function finishSession() {
   bumpStreak();
   addPoints(session.xp);
+  logActivity();
   persist();
 
   const total = session.correct + session.wrong;
@@ -2201,6 +2237,20 @@ function renderStats() {
     el.innerHTML = `<span class="badge-emoji">${b.emoji}</span><span class="badge-name">${b.name}</span>`;
     badgesEl.appendChild(el);
   });
+
+  const logEl = document.getElementById("activity-log");
+  const entries = (DATA.activityLog || []).slice(-10).reverse();
+  if (entries.length === 0) {
+    logEl.innerHTML = `<p class="empty-hint">Noch keine Übung abgeschlossen.</p>`;
+  } else {
+    logEl.innerHTML = entries.map(e => `
+      <div class="activity-entry">
+        <span class="activity-date">${escapeHtml(formatActivityDate(e.ts))}</span>
+        <span class="activity-label">${escapeHtml(e.label)}</span>
+        <span class="activity-xp">+${e.xp} ⭐</span>
+      </div>
+    `).join("");
+  }
 }
 
 // ---------------- Snake (Belohnung ab 1000 Punkten) ----------------
