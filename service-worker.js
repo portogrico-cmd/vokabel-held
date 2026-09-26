@@ -29,10 +29,12 @@ self.addEventListener("activate", (event) => {
 
 // Network-first (holt bei bestehender Verbindung immer die neueste Version),
 // fällt nur ohne Internet auf den letzten Cache-Stand zurück (= Offline-Nutzung).
+// cache: "no-store" umgeht auch den normalen HTTP-Cache des Browsers, nicht nur
+// diesen Service-Worker-Cache - sonst könnten Updates trotzdem verzögert ankommen.
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET") return;
   event.respondWith(
-    fetch(event.request)
+    fetch(event.request, { cache: "no-store" })
       .then((response) => {
         if (response && response.status === 200) {
           const clone = response.clone();
