@@ -12,8 +12,8 @@ if ("serviceWorker" in navigator) {
 const LEGACY_STORAGE_KEY = "vokabelheld_data_v1"; // Speicherort vor der Mehrspieler-Funktion
 
 const PROFILES = [
-  { id: "tiago", name: "Tiago", avatarClass: "avatar-tiago", grade: "7" },
-  { id: "nevio", name: "Nevio", avatarClass: "avatar-nevio", grade: "5" },
+  { id: "tiago", name: "Tiago", avatarClass: "avatar-tiago", grade: "7", snakeSpeedMs: 130 },
+  { id: "nevio", name: "Nevio", avatarClass: "avatar-nevio", grade: "5", snakeSpeedMs: 180 },
 ];
 
 function storageKeyFor(profileId) {
@@ -2381,7 +2381,12 @@ function renderStats() {
 
 const SNAKE_GRID = 20;
 const SNAKE_CELL = 24;
-const SNAKE_SPEED_MS = 130;
+const SNAKE_SPEED_MS_DEFAULT = 130;
+
+function currentSnakeSpeedMs() {
+  const profile = PROFILES.find(p => p.id === ACTIVE_PROFILE);
+  return (profile && profile.snakeSpeedMs) || SNAKE_SPEED_MS_DEFAULT;
+}
 
 let snakeGame = null; // { snake, dir, pendingDir, food, score, timer, running }
 let snakeRoundUsed = false; // true nach Game Over: die eine Runde ist verbraucht
@@ -2424,7 +2429,7 @@ function startSnakeRound() {
     food: randomSnakeFood(snake),
     score: 0,
     running: true,
-    timer: setInterval(snakeTick, SNAKE_SPEED_MS),
+    timer: setInterval(snakeTick, currentSnakeSpeedMs()),
   };
   document.getElementById("snake-overlay").classList.add("hidden");
   document.getElementById("snake-score").textContent = "🍎 0";
