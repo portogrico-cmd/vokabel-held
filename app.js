@@ -12,8 +12,8 @@ if ("serviceWorker" in navigator) {
 const LEGACY_STORAGE_KEY = "vokabelheld_data_v1"; // Speicherort vor der Mehrspieler-Funktion
 
 const PROFILES = [
-  { id: "tiago", name: "Tiago", avatarClass: "avatar-tiago" },
-  { id: "nevio", name: "Nevio", avatarClass: "avatar-nevio" },
+  { id: "tiago", name: "Tiago", avatarClass: "avatar-tiago", grade: "7" },
+  { id: "nevio", name: "Nevio", avatarClass: "avatar-nevio", grade: "5" },
 ];
 
 function storageKeyFor(profileId) {
@@ -807,6 +807,84 @@ const MIGRATION_GRADE7_UNIT1_P11_12_WORDS = [
   { de: "verschwinden", target: "to disappear", category: "7. Klasse – Unit 1: Topic 1" },
 ];
 
+// ---------------- Migrations (Red Line 1, 5. Klasse) ----------------
+
+// 5. Klasse, Unit 1 "That's me!", S. 8-13 (Welcome, Zoom in, Intro).
+const MIGRATION_GRADE5_UNIT1_WORDS = [
+  { de: "willkommen (bei/in)", target: "welcome (to)", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Hi.; Hallo.", target: "Hi, Hello", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Ich heiße ...", target: "My name is ...", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Wie heißt du?", target: "What's your name?", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "ich bin", target: "I'm", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Wie geht es dir?", target: "How are you?", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Mir geht es gut.", target: "I'm fine", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Danke.", target: "Thank you, Thanks", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Und du?", target: "And you?", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "okay", target: "OK, okay", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "ich mag ...", target: "I like ...", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Musik", target: "music", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Buch; Heft", target: "book", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Hund", target: "dog", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Schokolade", target: "chocolate", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Sportarten", target: "sports", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Es ist Zeit, zu gehen.", target: "It's time to go.", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Tschüss.; Bis bald.", target: "See you later.", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "ja", target: "yes", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Auf Wiedersehen.; Tschüss!", target: "Bye, Goodbye", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "blau", target: "blue", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "rot", target: "red", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "weiß", target: "white", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "grün", target: "green", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "braun", target: "brown", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "grau", target: "grey", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "schwarz", target: "black", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "pink; rosa", target: "pink", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "gelb", target: "yellow", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "orange", target: "orange", category: "5. Klasse – Unit 1: Welcome" },
+
+  { de: "im Park", target: "in a park", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Farbe", target: "colour", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Aktivität", target: "activity", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Tennis", target: "tennis", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Leute; Menschen", target: "people", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Junge; Bub", target: "boy", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Essen; Nahrung; Lebensmittel", target: "food", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Apfel", target: "apple", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Sache; Ding", target: "thing", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Snowboard", target: "snowboard", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Nummer; Zahl", target: "number", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Haustier", target: "pet", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "ich sehe was, was du nicht siehst und das ...", target: "I spy with my little eye, something ...", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "der; die; das", target: "the", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Skateboard", target: "skateboard", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "Ich kann Fußball spielen.", target: "I can play football.", category: "5. Klasse – Unit 1: Zoom in" },
+  { de: "fahren; reiten", target: "to ride", category: "5. Klasse – Unit 1: Zoom in" },
+
+  { de: "Das bin ich.", target: "That's me.", category: "5. Klasse – Unit 1: Intro" },
+  { de: "das; dies", target: "this", category: "5. Klasse – Unit 1: Intro" },
+  { de: "Fahrrad", target: "bike", category: "5. Klasse – Unit 1: Intro" },
+  { de: "cool; super", target: "cool", category: "5. Klasse – Unit 1: Intro" },
+  { de: "Fan", target: "fan", category: "5. Klasse – Unit 1: Intro" },
+  { de: "elf", target: "eleven", category: "5. Klasse – Unit 1: Intro" },
+  { de: "Wie alt bist du?", target: "How old are you?", category: "5. Klasse – Unit 1: Intro" },
+  { de: "verrückt (nach)", target: "crazy (about)", category: "5. Klasse – Unit 1: Intro" },
+  { de: "aus; von", target: "from", category: "5. Klasse – Unit 1: Intro" },
+  { de: "England", target: "England", category: "5. Klasse – Unit 1: Intro" },
+  { de: "Woher kommst du?", target: "Where are you from?", category: "5. Klasse – Unit 1: Intro" },
+  { de: "sie sind", target: "they're", category: "5. Klasse – Unit 1: Intro" },
+  { de: "Meerschweinchen", target: "guinea pig", category: "5. Klasse – Unit 1: Intro" },
+  { de: "zwölf", target: "twelve", category: "5. Klasse – Unit 1: Intro" },
+  { de: "Glückszahl", target: "lucky number", category: "5. Klasse – Unit 1: Intro" },
+  { de: "Katze", target: "cat", category: "5. Klasse – Unit 1: Intro" },
+  { de: "wer", target: "who", category: "5. Klasse – Unit 1: Intro" },
+  { de: "Lieblings-", target: "favourite", category: "5. Klasse – Unit 1: Intro" },
+  { de: "oder", target: "or", category: "5. Klasse – Unit 1: Intro" },
+  { de: "Mädchen", target: "girl", category: "5. Klasse – Unit 1: Intro" },
+  { de: "er ist", target: "he's", category: "5. Klasse – Unit 1: Intro" },
+  { de: "sie ist", target: "she's", category: "5. Klasse – Unit 1: Intro" },
+  { de: "Deutschland", target: "Germany", category: "5. Klasse – Unit 1: Intro" },
+];
+
 function applyMigration(id, entries, unit, grade) {
   DATA.appliedMigrations = DATA.appliedMigrations || [];
   if (DATA.appliedMigrations.includes(id)) return;
@@ -839,6 +917,10 @@ function applyTiagoMigrations() {
   applyMigration("redline3-grade7-unit1-p10-11-2026-09", MIGRATION_GRADE7_UNIT1_WORDS, "1", "7");
   applyMigration("redline3-grade7-unit1-p11-12-2026-09", MIGRATION_GRADE7_UNIT1_P11_12_WORDS, "1", "7");
   applyGrammarMigration("redline2-irregular-verbs-p204-2026-08", BOOK_IRREGULAR_VERBS_P204);
+}
+
+function applyNevioMigrations() {
+  applyMigration("redline1-grade5-unit1-p8-13-2026-09", MIGRATION_GRADE5_UNIT1_WORDS, "1", "5");
 }
 
 // Ordnet bereits vorhandenen Wörtern (aus der Zeit vor der Unit-Auswahl) nachträglich
@@ -939,8 +1021,12 @@ function selectProfile(profileId) {
   ACTIVE_PROFILE = profileId;
   DATA = loadData(profileId);
   if (profileId === "tiago") applyTiagoMigrations();
+  if (profileId === "nevio") applyNevioMigrations();
   ensureGrammarSeed();
   ensureWordUnits();
+  const profile = PROFILES.find(p => p.id === profileId);
+  currentGrade = (profile && profile.grade) || "6";
+  currentUnit = "all";
   updateHeaderStats();
   showView(SNAKE_PREVIEW ? "snake" : "home");
 }
@@ -1042,6 +1128,7 @@ function renderLearn() {
   // Units gibt es aktuell nur für Englisch, bei Spanisch macht die Auswahl keinen Sinn.
   document.getElementById("learn-grade-toggle").classList.toggle("hidden", currentLang !== "en");
   // Jede Klassenstufe hat ihre eigene Unit-Reihe (unterschiedliche Anzahl an Units).
+  document.getElementById("learn-unit-toggle-5").classList.toggle("hidden", currentLang !== "en" || currentGrade !== "5");
   document.getElementById("learn-unit-toggle-6").classList.toggle("hidden", currentLang !== "en" || currentGrade !== "6");
   document.getElementById("learn-unit-toggle-7").classList.toggle("hidden", currentLang !== "en" || currentGrade !== "7");
 }
@@ -1763,6 +1850,7 @@ function renderGrammarTopics() {
     b.classList.toggle("active", b.dataset.setUnit === currentUnit);
   });
   // Jede Klassenstufe hat ihre eigene Unit-Reihe (unterschiedliche Anzahl an Units).
+  document.getElementById("grammar-unit-toggle-5").classList.toggle("hidden", currentGrade !== "5");
   document.getElementById("grammar-unit-toggle-6").classList.toggle("hidden", currentGrade !== "6");
   document.getElementById("grammar-unit-toggle-7").classList.toggle("hidden", currentGrade !== "7");
 
