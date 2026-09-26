@@ -1183,6 +1183,21 @@ function shuffle(arr) {
   return a;
 }
 
+const MC_DAILY_LIMIT = 3; // Multiple Choice ist die "leichteste" Vokabel-Übung ohne Tippen -
+// diese Grenze sorgt dafür, dass auch Karteikarten, Wort tippen und Memory geübt werden.
+
+function mcSessionsUsedToday() {
+  const t = todayStr();
+  if (!DATA.mcUsage || DATA.mcUsage.date !== t) DATA.mcUsage = { date: t, count: 0 };
+  return DATA.mcUsage.count;
+}
+
+function registerMcSessionStart() {
+  mcSessionsUsedToday(); // stellt sicher, dass DATA.mcUsage für heute existiert
+  DATA.mcUsage.count++;
+  persist();
+}
+
 function startSession(lang, mode) {
   const effectiveUnit = lang === "en" ? currentUnit : "all";
   const pool = wordsForLangUnit(lang, effectiveUnit);
@@ -1202,6 +1217,13 @@ function startSession(lang, mode) {
     showView("manage");
     return;
   }
+
+  if (mode === "mc" && mcSessionsUsedToday() >= MC_DAILY_LIMIT) {
+    alert(`Multiple Choice hast du heute schon ${MC_DAILY_LIMIT}x geübt! Versuch's mal mit Karteikarten, Wort tippen oder Memory 💪`);
+    showView("learn");
+    return;
+  }
+  if (mode === "mc") registerMcSessionStart();
 
   let due = dueWords(lang, effectiveUnit);
   let queue = due.length > 0 ? due : pool; // if nothing due, practice everything
