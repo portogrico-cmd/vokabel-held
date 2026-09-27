@@ -14,6 +14,7 @@ const LEGACY_STORAGE_KEY = "vokabelheld_data_v1"; // Speicherort vor der Mehrspi
 const PROFILES = [
   { id: "tiago", name: "Tiago", avatarClass: "avatar-tiago", grade: "7", snakeSpeedMs: 130 },
   { id: "nevio", name: "Nevio", avatarClass: "avatar-nevio", grade: "5", snakeSpeedMs: 180 },
+  { id: "vasco", name: "Vasco", avatarClass: "avatar-vasco", grade: "7", snakeSpeedMs: 130 },
 ];
 
 function storageKeyFor(profileId) {
