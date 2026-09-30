@@ -823,6 +823,91 @@ const MIGRATION_GRADE7_UNIT1_P12_INTRO_END_WORDS = [
   { de: "töten; umbringen", target: "to kill", category: "7. Klasse – Unit 1: Intro" },
 ];
 
+// 7. Klasse, Unit 1 "A long time ago ...", S. 18-20 (Topic 2) + S. 21-24 (Text 1, Text 2).
+const MIGRATION_GRADE7_UNIT1_TOPIC2_TEXT_WORDS = [
+  { de: "Geschirrspülmaschine", target: "dishwasher", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Dampfmaschine", target: "steam engine", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Toaster", target: "toaster", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Mikroskop", target: "microscope", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "eine halbe Million", target: "half a million", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "lassen", target: "to let", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "die; der; dem; den; das", target: "which", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Form", target: "form", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "viel; sehr", target: "a lot", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Kohle", target: "coal", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Energie; Kraft", target: "energy", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "weniger", target: "less", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Fabrik; Werk", target: "factory", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "überfüllt", target: "crowded", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Bedingung; Zustand", target: "condition", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Bergwerk; Mine", target: "mine", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "verdienen", target: "to earn", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "(das) Reisen", target: "travel", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Verkehr", target: "traffic", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "jmdm. auf die Nerven gehen", target: "to get on sb's nerves", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "herumkommen", target: "to get around", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Material; Stoff", target: "material", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "dessen; deren", target: "whose", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Eisenbahn", target: "railway", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "System", target: "system", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Firma; Unternehmen", target: "company", category: "7. Klasse – Unit 1: Topic 2" },
+  { de: "Zeile; hier: Linie", target: "line", category: "7. Klasse – Unit 1: Topic 2" },
+
+  { de: "Eroberung", target: "conquest", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "sowohl ... als auch ...", target: "both ... and ...", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "Schwager", target: "brother-in-law", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "Herzog", target: "duke", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "sich (selbst)", target: "himself", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "ausgebildet", target: "trained", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "Bogenschütze; Bogenschützin", target: "archer", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "zu Fuß", target: "on foot", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "Wandteppich", target: "tapestry", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "Comic(heft)", target: "comic", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "Pfeil", target: "arrow", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "Erster Weihnachtsfeiertag", target: "Christmas Day", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "Schweinefleisch", target: "pork", category: "7. Klasse – Unit 1: Text 1" },
+  { de: "Nachname; Familienname", target: "surname", category: "7. Klasse – Unit 1: Text 1" },
+
+  { de: "tod-; tödlich", target: "deadly", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Stille; Schweigen; Ruhe", target: "silence", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Tunnel", target: "tunnel", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Dunkelheit", target: "the dark", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "den ganzen Tag", target: "all day", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Kanarienvogel", target: "canary", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Gas", target: "gas", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "explodieren", target: "to explode", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Explosion", target: "explosion", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Bergarbeiter; Bergarbeiterin", target: "miner", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "riechen", target: "to smell", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "eines Tages", target: "one day", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "husten", target: "to cough", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "still; ruhig; schweigsam", target: "silent", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Wagen; Karre", target: "truck", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Wind", target: "wind", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "jede", target: "any", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "warnen", target: "to warn", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Ton; Laut; Geräusch", target: "sound", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "nichts", target: "nothing", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Käfig", target: "cage", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "weh tun; verletzen", target: "to hurt", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "atmen", target: "to breathe", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Komm schon!", target: "Come on!", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "aufheben", target: "to pick up", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "(sich) umdrehen", target: "to turn around", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "tot", target: "dead", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Ohr", target: "ear", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "am Leben", target: "alive", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "gefeuert; hinausgeworfen", target: "fired", category: "7. Klasse – Unit 1: Text 2" },
+  { de: "Geruch", target: "smell", category: "7. Klasse – Unit 1: Text 2" },
+];
+
+// 7. Klasse, Unit 2, Film-Sektion.
+const MIGRATION_GRADE7_UNIT2_FILM_WORDS = [
+  { de: "einschlafen", target: "to fall asleep", category: "7. Klasse – Unit 2: Film" },
+  { de: "schlafen", target: "to be asleep", category: "7. Klasse – Unit 2: Film" },
+  { de: "ich würde lieber", target: "I'd rather", category: "7. Klasse – Unit 2: Film" },
+];
+
 // 7. Klasse, Spanisch Unit 1 "¡Hola! ¿Qué tal?", S. 160 (Primer paso, Bloque A).
 const MIGRATION_GRADE7_ES_UNIT1_WORDS = [
   { de: "Hallo!", target: "¡Hola!", category: "7. Klasse – Unit 1: Primer paso" },
@@ -1010,6 +1095,8 @@ function applyTiagoMigrations() {
   applyMigration("redline3-grade7-unit1-p10-11-2026-09", MIGRATION_GRADE7_UNIT1_WORDS, "1", "7");
   applyMigration("redline3-grade7-unit1-p11-12-2026-09", MIGRATION_GRADE7_UNIT1_P11_12_WORDS, "1", "7");
   applyMigration("redline3-grade7-unit1-p12-intro-end-2026-09", MIGRATION_GRADE7_UNIT1_P12_INTRO_END_WORDS, "1", "7");
+  applyMigration("redline3-grade7-unit1-topic2-text-2026-09", MIGRATION_GRADE7_UNIT1_TOPIC2_TEXT_WORDS, "1", "7");
+  applyMigration("redline3-grade7-unit2-film-2026-09", MIGRATION_GRADE7_UNIT2_FILM_WORDS, "2", "7");
   applyGrammarMigration("redline2-irregular-verbs-p204-2026-08", BOOK_IRREGULAR_VERBS_P204);
 }
 
