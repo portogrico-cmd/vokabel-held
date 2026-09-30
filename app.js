@@ -808,6 +808,21 @@ const MIGRATION_GRADE7_UNIT1_P11_12_WORDS = [
   { de: "verschwinden", target: "to disappear", category: "7. Klasse – Unit 1: Topic 1" },
 ];
 
+// 7. Klasse, Unit 1 "A long time ago ...", S. 12 (Rest von Intro).
+const MIGRATION_GRADE7_UNIT1_P12_INTRO_END_WORDS = [
+  { de: "Fort; Festung", target: "fort", category: "7. Klasse – Unit 1: Intro" },
+  { de: "andere; sonst", target: "else", category: "7. Klasse – Unit 1: Intro" },
+  { de: "nach Christus", target: "AD", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Angelsachse; Angelsächsin; angelsächsisch", target: "Anglo-Saxon", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Platzhalter für ein Nomen", target: "one, ones", category: "7. Klasse – Unit 1: Intro" },
+  { de: "jmdn. veranlassen, etw. zu tun", target: "to make sb do sth", category: "7. Klasse – Unit 1: Intro" },
+  { de: "der Rest", target: "the rest", category: "7. Klasse – Unit 1: Intro" },
+  { de: "selber; sie selbst; sich selbst; selbst", target: "themselves", category: "7. Klasse – Unit 1: Intro" },
+  { de: "Nordosten; nordöstlich; Nordost-", target: "northeast", category: "7. Klasse – Unit 1: Intro" },
+  { de: "zerstören", target: "to destroy", category: "7. Klasse – Unit 1: Intro" },
+  { de: "töten; umbringen", target: "to kill", category: "7. Klasse – Unit 1: Intro" },
+];
+
 // ---------------- Migrations (Red Line 1, 5. Klasse) ----------------
 
 // 5. Klasse, Unit 1 "That's me!", S. 8-13 (Welcome, Zoom in, Intro).
@@ -917,6 +932,7 @@ function applyTiagoMigrations() {
   applyMigration("redline2-unit6-p112-126-2026-08", MIGRATION_UNIT6_WORDS, "6");
   applyMigration("redline3-grade7-unit1-p10-11-2026-09", MIGRATION_GRADE7_UNIT1_WORDS, "1", "7");
   applyMigration("redline3-grade7-unit1-p11-12-2026-09", MIGRATION_GRADE7_UNIT1_P11_12_WORDS, "1", "7");
+  applyMigration("redline3-grade7-unit1-p12-intro-end-2026-09", MIGRATION_GRADE7_UNIT1_P12_INTRO_END_WORDS, "1", "7");
   applyGrammarMigration("redline2-irregular-verbs-p204-2026-08", BOOK_IRREGULAR_VERBS_P204);
 }
 
