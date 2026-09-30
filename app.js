@@ -1010,13 +1010,18 @@ function applyTiagoMigrations() {
   applyMigration("redline3-grade7-unit1-p10-11-2026-09", MIGRATION_GRADE7_UNIT1_WORDS, "1", "7");
   applyMigration("redline3-grade7-unit1-p11-12-2026-09", MIGRATION_GRADE7_UNIT1_P11_12_WORDS, "1", "7");
   applyMigration("redline3-grade7-unit1-p12-intro-end-2026-09", MIGRATION_GRADE7_UNIT1_P12_INTRO_END_WORDS, "1", "7");
-  reclassifyOrphanSeedWords(MIGRATION_GRADE7_ES_UNIT1_WORDS, "es", "1", "7");
-  applyMigration("linea1-grade7-es-unit1-p160-2026-09", MIGRATION_GRADE7_ES_UNIT1_WORDS, "1", "7", "es");
   applyGrammarMigration("redline2-irregular-verbs-p204-2026-08", BOOK_IRREGULAR_VERBS_P204);
 }
 
 function applyNevioMigrations() {
   applyMigration("redline1-grade5-unit1-p8-13-2026-09", MIGRATION_GRADE5_UNIT1_WORDS, "1", "5");
+}
+
+// Läuft für jedes Profil (Tiago, Nevio, Vasco, ...) - z.B. Spanisch-Vokabeln, die
+// nicht an eine bestimmte Klassenstufe gebunden sind und allen zugänglich sein sollen.
+function applyCommonMigrations() {
+  reclassifyOrphanSeedWords(MIGRATION_GRADE7_ES_UNIT1_WORDS, "es", "1", "7");
+  applyMigration("linea1-grade7-es-unit1-p160-2026-09", MIGRATION_GRADE7_ES_UNIT1_WORDS, "1", "7", "es");
 }
 
 // Ordnet bereits vorhandenen Wörtern (aus der Zeit vor der Unit-Auswahl) nachträglich
@@ -1121,6 +1126,7 @@ function selectProfile(profileId) {
   DATA = loadData(profileId);
   if (profileId === "tiago") applyTiagoMigrations();
   if (profileId === "nevio") applyNevioMigrations();
+  applyCommonMigrations();
   ensureGrammarSeed();
   ensureWordUnits();
   const profile = PROFILES.find(p => p.id === profileId);
