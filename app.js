@@ -823,6 +823,65 @@ const MIGRATION_GRADE7_UNIT1_P12_INTRO_END_WORDS = [
   { de: "töten; umbringen", target: "to kill", category: "7. Klasse – Unit 1: Intro" },
 ];
 
+// 7. Klasse, Spanisch Unit 1 "¡Hola! ¿Qué tal?", S. 160 (Primer paso, Bloque A).
+const MIGRATION_GRADE7_ES_UNIT1_WORDS = [
+  { de: "Hallo!", target: "¡Hola!", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Guten Morgen!; Guten Tag!", target: "¡Buenos días!", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Wie geht's?", target: "¿Qué tal?", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "gut", target: "bien", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Danke.", target: "Gracias.", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "und", target: "y", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Und du?", target: "¿Y tú?", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "auch", target: "también", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Ich bin ...", target: "Yo soy...", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Ich heiße ...", target: "Me llamo...", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Wie heißt du?", target: "¿Cómo te llamas?", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Wie ...?", target: "¿Cómo...?", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "ja", target: "sí", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "von; aus", target: "de", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Woher ...?", target: "¿De dónde...?", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Woher kommst du?", target: "¿De dónde eres?", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Deutschland", target: "Alemania", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Auf Wiedersehen!; Tschüs!", target: "¡Adiós!", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Bis später!", target: "¡Hasta luego!", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "sehr", target: "muy", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "So so.; Es geht.", target: "Así así.", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "schlecht", target: "mal", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Guten Tag!; Guten Abend!", target: "¡Buenas tardes!", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Guten Abend!; Gute Nacht!", target: "¡Buenas noches!", category: "7. Klasse – Unit 1: Primer paso" },
+
+  { de: "Wie ist dein Nachname?", target: "¿Cómo es tu apellido?", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "er/sie/es ist", target: "es", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Nachname", target: "el apellido", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "Man schreibt ...", target: "Se escribe...", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "Wie schreibt man ...?", target: "¿Cómo se escribe...?", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "mit Akzent", target: "con acento", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "mit Umlaut", target: "con dos puntos", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "Doppel-", target: "doble", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Park", target: "el parque", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "das Hotel", target: "el hotel", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "das (Stadt)Zentrum", target: "el centro", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Zoo", target: "el zoo", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "das Restaurant", target: "el restaurante", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "das Museum", target: "el museo", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Platz", target: "la plaza", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "die Buchhandlung", target: "la librería", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "das Haus; die Wohnung", target: "la casa", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "die Nummer; die Zahl", target: "el número", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Fuchs", target: "el zorro", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Hund", target: "el perro", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "die Katze", target: "el gato", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Elefant", target: "el elefante", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Bär", target: "el oso", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "das Pferd", target: "el caballo", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Esel", target: "el burro", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "die Biene", target: "la abeja", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "die Vogelspinne; die Tarantel", target: "la tarántula", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Affe", target: "el mono", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Frosch", target: "la rana", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "die Kuh", target: "la vaca", category: "7. Klasse – Unit 1: Bloque A" },
+];
+
 // ---------------- Migrations (Red Line 1, 5. Klasse) ----------------
 
 // 5. Klasse, Unit 1 "That's me!", S. 8-13 (Welcome, Zoom in, Intro).
@@ -901,16 +960,17 @@ const MIGRATION_GRADE5_UNIT1_WORDS = [
   { de: "Deutschland", target: "Germany", category: "5. Klasse – Unit 1: Intro" },
 ];
 
-function applyMigration(id, entries, unit, grade) {
+function applyMigration(id, entries, unit, grade, lang) {
   DATA.appliedMigrations = DATA.appliedMigrations || [];
   if (DATA.appliedMigrations.includes(id)) return;
+  const language = lang || "en";
   entries.forEach(w => {
     const key = (s) => s.trim().toLowerCase();
     const exists = DATA.words.some(x =>
-      x.language === "en" && key(x.de) === key(w.de) && key(x.target) === key(w.target)
+      x.language === language && key(x.de) === key(w.de) && key(x.target) === key(w.target)
     );
     if (!exists) {
-      const word = makeWord("en", w.de, w.target, w.category);
+      const word = makeWord(language, w.de, w.target, w.category);
       word.unit = unit || null;
       word.grade = grade || "6";
       DATA.words.push(word);
@@ -918,6 +978,23 @@ function applyMigration(id, entries, unit, grade) {
   });
   DATA.appliedMigrations.push(id);
   persist();
+}
+
+// Alte, nie einer Unit zugeordnete Basis-Vokabeln (z.B. aus SEED_WORDS) landen jetzt
+// tatsächlich in einem echten Buch-Kapitel - statt sie beim erneuten Auftauchen zu
+// duplizieren, ordnet diese Funktion sie einmalig in die richtige Unit/Klasse ein.
+function reclassifyOrphanSeedWords(entries, language, unit, grade) {
+  const key = (s) => s.trim().toLowerCase();
+  entries.forEach(w => {
+    const match = DATA.words.find(x =>
+      x.language === language && x.unit === null && key(x.de) === key(w.de) && key(x.target) === key(w.target)
+    );
+    if (match) {
+      match.unit = unit;
+      match.grade = grade;
+      match.category = w.category;
+    }
+  });
 }
 
 function applyTiagoMigrations() {
@@ -933,6 +1010,8 @@ function applyTiagoMigrations() {
   applyMigration("redline3-grade7-unit1-p10-11-2026-09", MIGRATION_GRADE7_UNIT1_WORDS, "1", "7");
   applyMigration("redline3-grade7-unit1-p11-12-2026-09", MIGRATION_GRADE7_UNIT1_P11_12_WORDS, "1", "7");
   applyMigration("redline3-grade7-unit1-p12-intro-end-2026-09", MIGRATION_GRADE7_UNIT1_P12_INTRO_END_WORDS, "1", "7");
+  reclassifyOrphanSeedWords(MIGRATION_GRADE7_ES_UNIT1_WORDS, "es", "1", "7");
+  applyMigration("linea1-grade7-es-unit1-p160-2026-09", MIGRATION_GRADE7_ES_UNIT1_WORDS, "1", "7", "es");
   applyGrammarMigration("redline2-irregular-verbs-p204-2026-08", BOOK_IRREGULAR_VERBS_P204);
 }
 
@@ -989,7 +1068,10 @@ function wordsForLang(lang) {
 }
 
 function wordsForLangUnit(lang, unit) {
-  const pool = wordsForLang(lang).filter(w => (w.grade || "6") === currentGrade);
+  // Klassen-/Unit-Auswahl gibt es in der Oberfläche nur für Englisch; Spanisch zeigt
+  // bewusst immer den gesamten Wortschatz, unabhängig von der aktuell gewählten Klasse.
+  let pool = wordsForLang(lang);
+  if (lang === "en") pool = pool.filter(w => (w.grade || "6") === currentGrade);
   return (!unit || unit === "all") ? pool : pool.filter(w => w.unit === unit);
 }
 
