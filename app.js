@@ -1338,7 +1338,7 @@ const SNAKE_PREVIEW = new URLSearchParams(location.search).get("snake") === "1";
 function selectProfile(profileId) {
   ACTIVE_PROFILE = profileId;
   DATA = loadData(profileId);
-  if (profileId === "tiago") applyTiagoMigrations();
+  if (profileId === "tiago" || profileId === "vasco") applyTiagoMigrations();
   if (profileId === "nevio") applyNevioMigrations();
   applyCommonMigrations();
   ensureGrammarSeed();
