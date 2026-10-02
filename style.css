@@ -133,6 +133,7 @@ p { color: var(--text-light); }
 .avatar-tiago { background: linear-gradient(135deg, #7c5cff, #ff6fa5); }
 .avatar-nevio { background: linear-gradient(135deg, #35c98f, #3dc7ff); }
 .avatar-vasco { background: linear-gradient(135deg, #ffa63d, #ff5d5d); }
+.avatar-dori { background: linear-gradient(135deg, #ffd23d, #35c98f); }
 .player-card { cursor: pointer; border: none; font-family: inherit; width: 100%; }
 .player-card:hover { transform: translateY(-3px); }
 .mini-flag {

@@ -15,6 +15,7 @@ const PROFILES = [
   { id: "tiago", name: "Tiago", avatarClass: "avatar-tiago", grade: "7", snakeSpeedMs: 130 },
   { id: "nevio", name: "Nevio", avatarClass: "avatar-nevio", grade: "5", snakeSpeedMs: 180 },
   { id: "vasco", name: "Vasco", avatarClass: "avatar-vasco", grade: "7", snakeSpeedMs: 130 },
+  { id: "dori", name: "Dori", avatarClass: "avatar-dori", grade: "5", snakeSpeedMs: 130 },
 ];
 
 function storageKeyFor(profileId) {
@@ -1170,6 +1171,39 @@ const MIGRATION_GRADE5_UNIT1_TOPICS_WORDS = [
   { de: "Spiel", target: "game", category: "5. Klasse – Unit 1: Listening skills" },
 ];
 
+const MIGRATION_GRADE5_DORI_UNIT1_WELCOME_WORDS = [
+  { de: "willkommen (bei/in)", target: "welcome (to)", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Hi.; Hallo.", target: "Hi, Hello", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Ich heiße ...", target: "My name is ...", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Wie heißt du?", target: "What's your name?", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "ich bin", target: "I'm", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Wie geht es dir?", target: "How are you?", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Mir geht es gut.", target: "I'm fine", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Danke.", target: "Thank you, Thanks", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Und du?", target: "And you?", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "okay", target: "OK, okay", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "ich mag ...", target: "I like ...", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Musik", target: "music", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Buch; Heft", target: "book", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Hund", target: "dog", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Schokolade", target: "chocolate", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Sportarten", target: "sports", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Es ist Zeit, zu gehen.", target: "It's time to go.", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Tschüss.; Bis bald.", target: "See you later.", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "ja", target: "yes", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "Auf Wiedersehen.; Tschüss!", target: "Bye, Goodbye", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "blau", target: "blue", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "rot", target: "red", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "weiß", target: "white", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "grün", target: "green", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "braun", target: "brown", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "grau", target: "grey", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "schwarz", target: "black", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "pink; rosa", target: "pink", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "gelb", target: "yellow", category: "5. Klasse – Unit 1: Welcome" },
+  { de: "orange", target: "orange", category: "5. Klasse – Unit 1: Welcome" },
+];
+
 function applyMigration(id, entries, unit, grade, lang) {
   DATA.appliedMigrations = DATA.appliedMigrations || [];
   if (DATA.appliedMigrations.includes(id)) return;
@@ -1229,6 +1263,10 @@ function applyNevioMigrations() {
   applyMigration("redline1-grade5-unit1-p8-13-2026-09", MIGRATION_GRADE5_UNIT1_WORDS, "1", "5");
   reclassifyOrphanSeedWords(MIGRATION_GRADE5_UNIT1_TOPICS_WORDS, "en", "1", "5");
   applyMigration("redline1-grade5-unit1-p14-31-2026-09", MIGRATION_GRADE5_UNIT1_TOPICS_WORDS, "1", "5");
+}
+
+function applyDoriMigrations() {
+  applyMigration("dori-grade5-unit1-welcome-p8-9-2026-10", MIGRATION_GRADE5_DORI_UNIT1_WELCOME_WORDS, "1", "5");
 }
 
 // Läuft für jedes Profil (Tiago, Nevio, Vasco, ...) - z.B. Spanisch-Vokabeln, die
@@ -1340,6 +1378,7 @@ function selectProfile(profileId) {
   DATA = loadData(profileId);
   if (profileId === "tiago" || profileId === "vasco") applyTiagoMigrations();
   if (profileId === "nevio") applyNevioMigrations();
+  if (profileId === "dori") applyDoriMigrations();
   applyCommonMigrations();
   ensureGrammarSeed();
   ensureWordUnits();
