@@ -968,6 +968,40 @@ const MIGRATION_GRADE7_ES_UNIT1_WORDS = [
   { de: "die Kuh", target: "la vaca", category: "7. Klasse – Unit 1: Bloque A" },
 ];
 
+const MIGRATION_GRADE7_ES_UNIT1_P161_WORDS = [
+  { de: "Ich bin ... Jahre alt.", target: "Tengo... años.", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "mein; meine", target: "mi", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "das Handy", target: "el móvil", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "das Telefon", target: "el teléfono", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "aber", target: "pero", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "die Stadt", target: "la ciudad", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "jetzt", target: "ahora", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Wie alt bist du?", target: "¿Cuántos años tienes?", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "die Welt", target: "el mundo", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "die Schule", target: "el colegio", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "die Mutter", target: "la madre", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "der Vater", target: "el padre", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "die Eltern", target: "los padres", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "der Bruder; die Schwester", target: "el hermano, la hermana", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "die Geschwister", target: "los hermanos", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "der Freund; die Freundin", target: "el amigo, la amiga", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "das Haustier", target: "la mascota", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "Er/Sie heißt ...", target: "Se llama...", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "dein; deine", target: "tu", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "besser", target: "mejor", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "nein; nicht; kein, -e", target: "no", category: "7. Klasse – Unit 1: Primer paso" },
+  { de: "haben", target: "tener (irr.)", category: "7. Klasse – Unit 1: Primer paso" },
+
+  { de: "Wer?", target: "¿Quién...?, ¿Quiénes...?", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "der Lehrer; die Lehrerin", target: "el profesor, la profesora", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "arbeiten", target: "trabajar", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "in; auf; an", target: "en", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "sprechen; reden", target: "hablar", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "Deutsch, die deutsche Sprache", target: "el alemán", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "(Ja), natürlich!", target: "¡Claro!", category: "7. Klasse – Unit 1: Bloque A" },
+  { de: "Spanisch, die spanische Sprache", target: "el español", category: "7. Klasse – Unit 1: Bloque A" },
+];
+
 // ---------------- Migrations (Red Line 1, 5. Klasse) ----------------
 
 // 5. Klasse, Unit 1 "That's me!", S. 8-13 (Welcome, Zoom in, Intro).
@@ -1387,6 +1421,7 @@ function applyDoriMigrations() {
 function applyCommonMigrations() {
   reclassifyOrphanSeedWords(MIGRATION_GRADE7_ES_UNIT1_WORDS, "es", "1", "7");
   applyMigration("linea1-grade7-es-unit1-p160-2026-09", MIGRATION_GRADE7_ES_UNIT1_WORDS, "1", "7", "es");
+  applyMigration("linea1-grade7-es-unit1-p161-2026-10", MIGRATION_GRADE7_ES_UNIT1_P161_WORDS, "1", "7", "es");
 }
 
 // Ordnet bereits vorhandenen Wörtern (aus der Zeit vor der Unit-Auswahl) nachträglich
