@@ -1413,6 +1413,9 @@ const MIGRATION_GRADE5_DORI_UNIT2_WORDS = [
 function applyDoriMigrations() {
   applyMigration("dori-grade5-unit1-welcome-p8-9-2026-10", MIGRATION_GRADE5_DORI_UNIT1_WELCOME_WORDS, "1", "5");
   applyMigration("dori-grade5-unit1-welcome-song-p9-2026-10", MIGRATION_GRADE5_DORI_WELCOME_SONG_WORDS, "1", "5");
+  applyMigration("dori-grade5-unit1-p8-13-2026-10", MIGRATION_GRADE5_UNIT1_WORDS, "1", "5");
+  reclassifyOrphanSeedWords(MIGRATION_GRADE5_UNIT1_TOPICS_WORDS, "en", "1", "5");
+  applyMigration("dori-grade5-unit1-p14-31-2026-10", MIGRATION_GRADE5_UNIT1_TOPICS_WORDS, "1", "5");
   applyMigration("dori-grade5-unit2-schoollife-2026-10", MIGRATION_GRADE5_DORI_UNIT2_WORDS, "2", "5");
 }
 
