@@ -2224,6 +2224,7 @@ const GRAMMAR_TOPICS = [
   { id: "g15", emoji: "🔮", title: "G15: will-future", subtitle: "Die Zukunft mit will", unit: "5", grade: "6" },
   { id: "g16", emoji: "🤝", title: "G16: Possessivpronomen", subtitle: "mine, yours, his, hers ...", unit: "5", grade: "6" },
   { id: "g17", emoji: "❓", title: "G17: Satzstellung in Fragen", subtitle: "Wiederholung (Revision)", unit: "6", grade: "6" },
+  { id: "es1", emoji: "🇪🇸", title: "Spanisch: tener (haben)", subtitle: "yo tengo · tú tienes · él/ella tiene", unit: "1", grade: "7" },
 ];
 
 let currentGrammarTopic = "irregular";
@@ -2383,6 +2384,17 @@ const GRAMMAR_SENTENCES = [
   { id: "g17_4", topic: "g17", display: "Where ___ you buy your clothes?", blank: "do", hint: "Hilfsverb nach Fragewort", full: "Where do you buy your clothes?", german: "Wo kaufst du deine Kleidung?" },
   { id: "g17_5", topic: "g17", display: "What ___ Sam and Max do last Sunday?", blank: "did", hint: "Hilfsverb nach Fragewort, Vergangenheit", full: "What did Sam and Max do last Sunday?", german: "Was haben Sam und Max letzten Sonntag gemacht?" },
   { id: "g17_6", topic: "g17", display: "___ we go to the cinema tomorrow?", blank: "Will", hint: "Hilfsverb, will-future", full: "Will we go to the cinema tomorrow?", german: "Werden wir morgen ins Kino gehen?" },
+
+  // ES1: Spanisch, tener (irr.), Unidad 1 Primer paso (Línea Amarilla, S. 161, Kasten "Gramática").
+  // Satz 1 stammt aus dem Vokabelteil des Buchs, die übrigen sind einfache Übungssätze mit Buchvokabeln.
+  { id: "es1_1", topic: "es1", display: "Yo no ___ hermanos.", blank: "tengo", hint: "tener, yo (ich)", full: "Yo no tengo hermanos.", german: "Ich habe keine Geschwister." },
+  { id: "es1_2", topic: "es1", display: "Tú ___ una mascota.", blank: "tienes", hint: "tener, tú (du)", full: "Tú tienes una mascota.", german: "Du hast ein Haustier." },
+  { id: "es1_3", topic: "es1", display: "Miguel ___ una hermana.", blank: "tiene", hint: "tener, él (er)", full: "Miguel tiene una hermana.", german: "Miguel hat eine Schwester." },
+  { id: "es1_4", topic: "es1", display: "Yo ___ un gato.", blank: "tengo", hint: "tener, yo (ich)", full: "Yo tengo un gato.", german: "Ich habe eine Katze." },
+  { id: "es1_5", topic: "es1", display: "Julia ___ una amiga.", blank: "tiene", hint: "tener, ella (sie)", full: "Julia tiene una amiga.", german: "Julia hat eine Freundin." },
+  { id: "es1_6", topic: "es1", display: "¿Tú ___ hermanos?", blank: "tienes", hint: "tener, tú (du)", full: "¿Tú tienes hermanos?", german: "Hast du Geschwister?" },
+  { id: "es1_7", topic: "es1", display: "Tú no ___ hermanos.", blank: "tienes", hint: "tener, tú (du)", full: "Tú no tienes hermanos.", german: "Du hast keine Geschwister." },
+  { id: "es1_8", topic: "es1", display: "Ella ___ una mascota.", blank: "tiene", hint: "tener, ella (sie)", full: "Ella tiene una mascota.", german: "Sie hat ein Haustier." },
 ];
 
 function renderGrammarTopics() {
