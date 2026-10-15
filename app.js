@@ -1528,8 +1528,10 @@ function selectProfile(profileId) {
   ACTIVE_PROFILE = profileId;
   DATA = loadData(profileId);
   if (profileId === "tiago" || profileId === "vasco") applyTiagoMigrations();
-  if (profileId === "nevio") applyNevioMigrations();
-  if (profileId === "dori") applyDoriMigrations();
+  if (profileId === "nevio" || profileId === "dori") {
+    applyNevioMigrations();
+    applyDoriMigrations();
+  }
   applyCommonMigrations();
   ensureGrammarSeed();
   ensureWordUnits();
