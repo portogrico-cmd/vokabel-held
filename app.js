@@ -1940,7 +1940,7 @@ function renderMultipleChoice(body) {
 // ---- Typing ----
 
 function normalize(s) {
-  return s.trim().toLowerCase().replace(/\s+/g, " ");
+  return s.trim().toLowerCase().replace(/[’‘]/g, "'").replace(/\s+/g, " ");
 }
 
 // Ein Vokabelfeld wie "to write, wrote, written" oder "was, were" gilt als richtig
@@ -2227,6 +2227,13 @@ const GRAMMAR_TOPICS = [
   { id: "g16", emoji: "🤝", title: "G16: Possessivpronomen", subtitle: "mine, yours, his, hers ...", unit: "5", grade: "6" },
   { id: "g17", emoji: "❓", title: "G17: Satzstellung in Fragen", subtitle: "Wiederholung (Revision)", unit: "6", grade: "6" },
   { id: "es1", emoji: "🇪🇸", title: "Spanisch: tener (haben)", subtitle: "yo tengo · tú tienes · él/ella tiene", unit: "1", grade: "7" },
+  { id: "r1g2", emoji: "🧑", title: "G2: Personalpronomen und be", subtitle: "I am, you are, he is ...", unit: "1", grade: "5" },
+  { id: "r1g3", emoji: "🔢", title: "G3: Der Plural", subtitle: "books, families, mice ...", unit: "1", grade: "5" },
+  { id: "r1g4", emoji: "🚫", title: "G4: Die Verneinung von be", subtitle: "isn't, aren't, I'm not", unit: "1", grade: "5" },
+  { id: "r3g1", emoji: "🏰", title: "G1 (R): Die einfache Vergangenheit", subtitle: "Revision: simple past", unit: "1", grade: "7" },
+  { id: "r3g2", emoji: "⏪", title: "G2: Die Vorvergangenheit", subtitle: "past perfect: had + 3. Form", unit: "1", grade: "7" },
+  { id: "r3g3", emoji: "🔗", title: "G3: Relativsätze mit Relativpronomen", subtitle: "who, which, that, whose", unit: "1", grade: "7" },
+  { id: "r3g4", emoji: "✂️", title: "G4: Relativsätze ohne Relativpronomen", subtitle: "contact clauses", unit: "1", grade: "7" },
 ];
 
 let currentGrammarTopic = "irregular";
@@ -2397,6 +2404,66 @@ const GRAMMAR_SENTENCES = [
   { id: "es1_6", topic: "es1", display: "¿Tú ___ hermanos?", blank: "tienes", hint: "tener, tú (du)", full: "¿Tú tienes hermanos?", german: "Hast du Geschwister?" },
   { id: "es1_7", topic: "es1", display: "Tú no ___ hermanos.", blank: "tienes", hint: "tener, tú (du)", full: "Tú no tienes hermanos.", german: "Du hast keine Geschwister." },
   { id: "es1_8", topic: "es1", display: "Ella ___ una mascota.", blank: "tiene", hint: "tener, ella (sie)", full: "Ella tiene una mascota.", german: "Sie hat ein Haustier." },
+
+  // 5. Klasse (Red Line 1), Unit 1: "Test yourself" zu G2, G3, G4 (S. 131-133 bzw. Grammatikteil).
+  // G2: Personalpronomen und be
+  { id: "r1g2_1", topic: "r1g2", display: "Hi, my name is Philipp. ___ twelve.", blank: "I'm, I am", hint: "Kurz- oder Langform von be", full: "Hi, my name is Philipp. I'm twelve.", german: "Hallo, mein Name ist Philipp. Ich bin zwölf." },
+  { id: "r1g2_2", topic: "r1g2", display: "My mum's name is Carol. ___ nice.", blank: "She's, She is", hint: "Kurz- oder Langform von be", full: "My mum's name is Carol. She's nice.", german: "Der Name meiner Mama ist Carol. Sie ist nett." },
+  { id: "r1g2_3", topic: "r1g2", display: "Peter is my father. ___ from England.", blank: "He's, He is", hint: "Kurz- oder Langform von be", full: "Peter is my father. He's from England.", german: "Peter ist mein Vater. Er ist aus England." },
+  { id: "r1g2_4", topic: "r1g2", display: "Here are my brothers. ___ crazy.", blank: "They're, They are", hint: "Kurz- oder Langform von be", full: "Here are my brothers. They're crazy.", german: "Hier sind meine Brüder. Sie sind verrückt." },
+  { id: "r1g2_5", topic: "r1g2", display: "This is my dog Jenny. ___ my friend.", blank: "She's, She is", hint: "Haustier mit Namen: he oder she", full: "This is my dog Jenny. She's my friend.", german: "Das ist mein Hund Jenny. Sie ist meine Freundin." },
+  { id: "r1g2_6", topic: "r1g2", display: "___ a nice family.", blank: "We're, We are, They're, They are, You're, You are", hint: "Kurz- oder Langform von be", full: "We're a nice family.", german: "Wir sind eine nette Familie." },
+
+  // G3: Der Plural
+  { id: "r1g3_1", topic: "r1g3", display: "There are eight ___ in the park.", blank: "boys", hint: "Plural von boy", full: "There are eight boys in the park.", german: "Im Park sind acht Jungen." },
+  { id: "r1g3_2", topic: "r1g3", display: "There are three ___.", blank: "bikes", hint: "Plural von bike", full: "There are three bikes.", german: "Da sind drei Fahrräder." },
+  { id: "r1g3_3", topic: "r1g3", display: "The ___ are white.", blank: "fish", hint: "Plural von fish", full: "The fish are white.", german: "Die Fische sind weiß." },
+  { id: "r1g3_4", topic: "r1g3", display: "The ___ are nice.", blank: "mice", hint: "Plural von mouse", full: "The mice are nice.", german: "Die Mäuse sind nett." },
+  { id: "r1g3_5", topic: "r1g3", display: "I like ___.", blank: "apples", hint: "Plural von apple", full: "I like apples.", german: "Ich mag Äpfel." },
+  { id: "r1g3_6", topic: "r1g3", display: "There are two ___ in this picture.", blank: "families", hint: "Plural von family", full: "There are two families in this picture.", german: "Auf diesem Bild sind zwei Familien." },
+
+  // G4: Die Verneinung von be
+  { id: "r1g4_1", topic: "r1g4", display: "The mouse ___ Olivia's pet.", blank: "isn't, is not", hint: "Verneinung von is, Kurz- oder Langform", full: "The mouse isn't Olivia's pet.", german: "Die Maus ist nicht Olivias Haustier." },
+  { id: "r1g4_2", topic: "r1g4", display: "Guinea pigs ___ like dogs.", blank: "aren't, are not", hint: "Verneinung von are, Kurz- oder Langform", full: "Guinea pigs aren't like dogs.", german: "Meerschweinchen sind nicht wie Hunde." },
+  { id: "r1g4_3", topic: "r1g4", display: "___ a pet fan.", blank: "I'm not, I am not", hint: "Verneinung von I am", full: "I'm not a pet fan.", german: "Ich bin kein Haustier-Fan." },
+  { id: "r1g4_4", topic: "r1g4", display: "___ in the garden.", blank: "You aren't, You're not, You are not", hint: "Verneinung von You are", full: "You aren't in the garden.", german: "Du bist nicht im Garten." },
+  { id: "r1g4_5", topic: "r1g4", display: "___ Sherlock's friends.", blank: "We aren't, We're not, We are not", hint: "Verneinung von We are", full: "We aren't Sherlock's friends.", german: "Wir sind nicht Sherlocks Freunde." },
+  { id: "r1g4_6", topic: "r1g4", display: "Fluff ___ crazy about apples.", blank: "isn't, is not", hint: "Verneinung von is, Kurz- oder Langform", full: "Fluff isn't crazy about apples.", german: "Fluff ist nicht verrückt nach Äpfeln." },
+
+  // 7. Klasse (Red Line 3), Unit 1: "Test yourself" zu G1-G4 (S. 130-133).
+  // G1 (R): simple past
+  { id: "r3g1_1", topic: "r3g1", display: "Last week I ___ to the museum.", blank: "went", hint: "go (simple past)", full: "Last week I went to the museum.", german: "Letzte Woche bin ich ins Museum gegangen." },
+  { id: "r3g1_2", topic: "r3g1", display: "They ___ an interesting story about the past.", blank: "heard", hint: "hear (simple past)", full: "They heard an interesting story about the past.", german: "Sie hörten eine interessante Geschichte über die Vergangenheit." },
+  { id: "r3g1_3", topic: "r3g1", display: "___ the Anglo-Saxons like Britain? - Yes, they did.", blank: "Did", hint: "Frage im simple past", full: "Did the Anglo-Saxons like Britain? - Yes, they did.", german: "Mochten die Angelsachsen Britannien? - Ja." },
+  { id: "r3g1_4", topic: "r3g1", display: "Did the Anglo-Saxons like Britain? - Yes, they ___.", blank: "did", hint: "Kurzantwort im simple past", full: "Did the Anglo-Saxons like Britain? - Yes, they did.", german: "Mochten die Angelsachsen Britannien? - Ja." },
+  { id: "r3g1_5", topic: "r3g1", display: "___ we know much about the first people in Britain? - No, we didn't.", blank: "Did", hint: "Frage im simple past", full: "Did we know much about the first people in Britain? - No, we didn't.", german: "Wussten wir viel über die ersten Menschen in Britannien? - Nein." },
+  { id: "r3g1_6", topic: "r3g1", display: "Did we know much about the first people in Britain? - No, we ___.", blank: "didn't, did not", hint: "Kurzantwort, verneint", full: "Did we know much about the first people in Britain? - No, we didn't.", german: "Wussten wir viel über die ersten Menschen in Britannien? - Nein." },
+  { id: "r3g1_7", topic: "r3g1", display: "Why ___ the Vikings destroy the church of Lindisfarne?", blank: "did", hint: "Hilfsverb nach Fragewort, simple past", full: "Why did the Vikings destroy the church of Lindisfarne?", german: "Warum zerstörten die Wikinger die Kirche von Lindisfarne?" },
+  { id: "r3g1_8", topic: "r3g1", display: "Britain ___ an island before 6,000 BC.", blank: "wasn't, was not", hint: "not be (simple past)", full: "Britain wasn't an island before 6,000 BC.", german: "Britannien war vor 6.000 v. Chr. keine Insel." },
+
+  // G2: past perfect
+  { id: "r3g2_1", topic: "r3g2", display: "After the land bridge ___, Britain became an island.", blank: "had disappeared", hint: "disappear (past perfect)", full: "After the land bridge had disappeared, Britain became an island.", german: "Nachdem die Landbrücke verschwunden war, wurde Britannien eine Insel." },
+  { id: "r3g2_2", topic: "r3g2", display: "There ___ people on the British Isles before the Celts invaded them.", blank: "had been", hint: "be (past perfect)", full: "There had been people on the British Isles before the Celts invaded them.", german: "Es hatte Menschen auf den Britischen Inseln gegeben, bevor die Kelten sie eroberten." },
+  { id: "r3g2_3", topic: "r3g2", display: "___ over Britain before the Romans arrived?", blank: "Who had ruled", hint: "who + rule (past perfect)", full: "Who had ruled over Britain before the Romans arrived?", german: "Wer hatte über Britannien geherrscht, bevor die Römer ankamen?" },
+  { id: "r3g2_4", topic: "r3g2", display: "After the Anglo-Saxons ___ to Britain, some Celts had to go to Cornwall.", blank: "had come", hint: "come (past perfect)", full: "After the Anglo-Saxons had come to Britain, some Celts had to go to Cornwall.", german: "Nachdem die Angelsachsen nach Britannien gekommen waren, mussten einige Kelten nach Cornwall gehen." },
+  { id: "r3g2_5", topic: "r3g2", display: "Vellibia ___ with her family before she married Tiberius.", blank: "had lived", hint: "live (past perfect)", full: "Vellibia had lived with her family before she married Tiberius.", german: "Vellibia hatte mit ihrer Familie gelebt, bevor sie Tiberius heiratete." },
+  { id: "r3g2_6", topic: "r3g2", display: "She ___ how to write before she left home.", blank: "hadn't learned, had not learned, hadn't learnt, had not learnt", hint: "not learn (past perfect)", full: "She hadn't learned how to write before she left home.", german: "Sie hatte nicht gelernt, wie man schreibt, bevor sie von zu Hause wegging." },
+
+  // G3: Relativsätze mit who, whose, which (that)
+  { id: "r3g3_1", topic: "r3g3", display: "William was the king ___ built part of the Tower of London.", blank: "who, that", hint: "who, whose oder which?", full: "William was the king who built part of the Tower of London.", german: "William war der König, der einen Teil des Tower of London baute." },
+  { id: "r3g3_2", topic: "r3g3", display: "'Pork' is a word ___ the Normans brought to England.", blank: "which, that", hint: "who, whose oder which?", full: "'Pork' is a word which the Normans brought to England.", german: "'Pork' ist ein Wort, das die Normannen nach England brachten." },
+  { id: "r3g3_3", topic: "r3g3", display: "Children ___ parents didn't have enough money had to work in factories.", blank: "whose", hint: "who, whose oder which?", full: "Children whose parents didn't have enough money had to work in factories.", german: "Kinder, deren Eltern nicht genug Geld hatten, mussten in Fabriken arbeiten." },
+  { id: "r3g3_4", topic: "r3g3", display: "They often had to live in flats or houses ___ were very small.", blank: "which, that", hint: "who, whose oder which?", full: "They often had to live in flats or houses which were very small.", german: "Sie mussten oft in Wohnungen oder Häusern leben, die sehr klein waren." },
+  { id: "r3g3_5", topic: "r3g3", display: "Trains could bring people and things to places ___ were far away.", blank: "which, that", hint: "who, whose oder which?", full: "Trains could bring people and things to places which were far away.", german: "Züge konnten Menschen und Dinge an Orte bringen, die weit weg waren." },
+  { id: "r3g3_6", topic: "r3g3", display: "Do you know the name of the man ___ invented the telephone?", blank: "who, that", hint: "who, whose oder which?", full: "Do you know the name of the man who invented the telephone?", german: "Kennst du den Namen des Mannes, der das Telefon erfunden hat?" },
+
+  // G4: contact clauses (yes = Relativpronomen kann weggelassen werden)
+  { id: "r3g4_1", topic: "r3g4", display: "Relativpronomen weglassbar? That noise which you can hear from outside comes from the traffic. ___", blank: "yes", hint: "yes oder no", full: "That noise you can hear from outside comes from the traffic.", german: "Das Geräusch, das man von draußen hören kann, kommt vom Verkehr." },
+  { id: "r3g4_2", topic: "r3g4", display: "Relativpronomen weglassbar? The Normans weren't the only people who invaded Britain in the past. ___", blank: "no", hint: "yes oder no", full: "The Normans weren't the only people who invaded Britain in the past.", german: "Die Normannen waren nicht die einzigen Leute, die Britannien in der Vergangenheit eroberten." },
+  { id: "r3g4_3", topic: "r3g4", display: "Relativpronomen weglassbar? Harold's men came back from a battle which they had fought at Stamford Bridge. ___", blank: "yes", hint: "yes oder no", full: "Harold's men came back from a battle they had fought at Stamford Bridge.", german: "Harolds Männer kamen von einer Schlacht zurück, die sie bei Stamford Bridge geschlagen hatten." },
+  { id: "r3g4_4", topic: "r3g4", display: "Relativpronomen weglassbar? This is the bike that my parents gave me. ___", blank: "yes", hint: "yes oder no", full: "This is the bike my parents gave me.", german: "Das ist das Fahrrad, das meine Eltern mir gegeben haben." },
+  { id: "r3g4_5", topic: "r3g4", display: "Relativpronomen weglassbar? Is Alexander Graham Bell the person who invented the telephone? ___", blank: "no", hint: "yes oder no", full: "Is Alexander Graham Bell the person who invented the telephone?", german: "Ist Alexander Graham Bell die Person, die das Telefon erfunden hat?" },
+  { id: "r3g4_6", topic: "r3g4", display: "Relativpronomen weglassbar? I would like to meet a person who lives in a real castle. ___", blank: "no", hint: "yes oder no", full: "I would like to meet a person who lives in a real castle.", german: "Ich würde gerne eine Person treffen, die in einem echten Schloss lebt." },
 ];
 
 function renderGrammarTopics() {
